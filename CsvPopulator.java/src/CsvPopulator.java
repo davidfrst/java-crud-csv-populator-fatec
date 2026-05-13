@@ -48,7 +48,7 @@ public class CsvPopulator {
             Random random = new Random();
     
             try (FileWriter writer = new FileWriter(filePath, true)) {
-                for (int i = 0; i < 100; i++) {
+                for (int i = 0; i < 50; i++) {
                     String nome = nomes[random.nextInt(nomes.length)];
                     String sobrenome = sobreNomes[random.nextInt(sobreNomes.length)];
                     String nomecompleto = (nome + " " + sobrenome);
