@@ -288,17 +288,53 @@ public class CrudMenuCsv {
         String nome = JOptionPane.showInputDialog("Digite o nome da empresa:");
         String cidade = JOptionPane.showInputDialog("Digite a cidade:");
         String email = JOptionPane.showInputDialog("Digite o email:");
+        if (
+            email.indexOf("@") == -1 ||
+            (email.indexOf("@") != email.lastIndexOf("@"))
+        ) {
+            JOptionPane.showMessageDialog(null, "Email inválido!");
+            return;
+        }
+        if (email.indexOf(".") == -1) {
+            JOptionPane.showMessageDialog(null, "Email inválido!");
+            return;
+        }
         String cnpj = JOptionPane.showInputDialog("Digite o CNPJ;");
+        if (
+            cnpj.indexOf("/") == -1 ||
+            (cnpj.indexOf("/") != cnpj.lastIndexOf("/"))
+        ) {
+            JOptionPane.showMessageDialog(
+                null,
+                "CNPJ inválido! Digite no formato: 12.XXX.345/0000-99"
+            );
+            return;
+        }
+        if (
+            cnpj.indexOf("-") == -1 ||
+            cnpj.indexOf("-") != cnpj.lastIndexOf("-")
+        ) {
+            JOptionPane.showMessageDialog(
+                null,
+                "CNPJ inválido! Digite no formato: 12.XXX.345/0000-99"
+            );
+            return;
+        } else if (cnpj.trim().length() != 16) {
+            JOptionPane.showMessageDialog(
+                null,
+                "CNPJ inválido. Digite no formato: 12.XXX.345/0000-99"
+            );
+        }
 
         try (FileWriter writeruser = new FileWriter(filePathEmpresas, true)) {
             writeruser
-                .append(nome)
+                .append(nome.trim())
                 .append(",")
-                .append(cidade)
+                .append(cidade.trim())
                 .append(",")
-                .append(email)
+                .append(email.trim())
                 .append(",")
-                .append(cnpj)
+                .append(cnpj.trim())
                 .append("\n");
             JOptionPane.showMessageDialog(
                 null,
@@ -360,13 +396,13 @@ public class CrudMenuCsv {
                 );
                 registrosEmpresas.set(
                     i,
-                    novoNome +
+                    novoNome.trim() +
                         "," +
-                        novaCidade +
+                        novaCidade.trim() +
                         "," +
-                        novoEmail +
+                        novoEmail.trim() +
                         "," +
-                        novoCnpj
+                        novoCnpj.trim()
                 );
                 encontrado = true;
                 break;
