@@ -290,7 +290,7 @@ public class CrudMenuCsv {
         String email = JOptionPane.showInputDialog("Digite o email:");
         String cnpj = JOptionPane.showInputDialog("Digite o CNPJ;");
 
-        try (FileWriter writeruser = new FileWriter(filePathUsuarios, true)) {
+        try (FileWriter writeruser = new FileWriter(filePathEmpresas, true)) {
             writeruser
                 .append(nome)
                 .append(",")
