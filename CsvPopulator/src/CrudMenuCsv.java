@@ -316,7 +316,7 @@ public class CrudMenuCsv {
         ) {
             JOptionPane.showMessageDialog(
                 null,
-                "CNPJ inválido! Digite no formato: 12.XXX.345/0000-99"
+                "CNPJ inválido! Digite no formato: 12.XXX.345/0000-99" //máscara user friendly para cnpj
             );
             return;
         } else if (cnpj.trim().length() != 16) {
