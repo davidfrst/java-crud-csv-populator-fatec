@@ -88,20 +88,61 @@ public class CrudMenuCsv {
     }
 
     private static void adicionarRegistroUsuarios() {
+        //Atualizações depois do feedback do Nicolas Massu
         String nome = JOptionPane.showInputDialog("Digite o nome:");
+        if (nome.length() < 2) {
+            JOptionPane.showMessageDialog(null, "Informe um nome válido.");
+            return;
+        }
+        if ((nome.indexOf(" ") < 1) || (nome.lastIndexOf(" ") < 1)) {
+            JOptionPane.showMessageDialog(null, "Informe seu nome completo.");
+            return;
+        }
+        boolean testenumericoNome = nome.matches("[0-9]+");
+        if (testenumericoNome == true) {
+            JOptionPane.showMessageDialog(
+                null,
+                "Seu nome não pode conter números"
+            );
+            return;
+        }
         String idade = JOptionPane.showInputDialog("Digite a idade:");
+        boolean testenumericoIdade = idade.matches("[0-9]+");
+        if (testenumericoIdade == false) {
+            JOptionPane.showMessageDialog(null, "Informe uma idade válida.");
+            return;
+        }
         String cidade = JOptionPane.showInputDialog("Digite a cidade:");
+        boolean testenumericoCidade = nome.matches("[0-9]+");
+        if (testenumericoCidade == true) {
+            JOptionPane.showMessageDialog(
+                null,
+                "Sua cidade não pode conter números."
+            );
+            return;
+        }
         String email = JOptionPane.showInputDialog("Digite o email:");
+        if (
+            email.indexOf("@") == -1 ||
+            (email.indexOf("@") != email.lastIndexOf("@"))
+        ) {
+            JOptionPane.showMessageDialog(null, "Email inválido!");
+            return;
+        }
+        if (email.indexOf(".") == -1) {
+            JOptionPane.showMessageDialog(null, "Email inválido!");
+            return;
+        }
 
         try (FileWriter writeruser = new FileWriter(filePathUsuarios, true)) {
             writeruser
-                .append(nome)
+                .append(nome.trim())
                 .append(",")
-                .append(idade)
+                .append(idade.trim())
                 .append(",")
-                .append(cidade)
+                .append(cidade.trim())
                 .append(",")
-                .append(email)
+                .append(email.trim())
                 .append("\n");
             JOptionPane.showMessageDialog(
                 null,
@@ -286,7 +327,30 @@ public class CrudMenuCsv {
 
     private static void adicionarRegistroEmpresas() {
         String nome = JOptionPane.showInputDialog("Digite o nome da empresa:");
+        if (nome.length() < 2) {
+            JOptionPane.showMessageDialog(null, "Informe um nome válido.");
+            return;
+        }
+        String testeSociedade = nome.toLowerCase();
+        if (
+            (testeSociedade.contains("ltda.") == false) &&
+            (testeSociedade.contains("s/a") == false)
+        ) {
+            JOptionPane.showMessageDialog(
+                null,
+                "O nome da empresa deve conter 'Ltda.' ou 'S/A'"
+            );
+            return;
+        }
         String cidade = JOptionPane.showInputDialog("Digite a cidade:");
+        boolean testenumericoCidade = nome.matches("[0-9]+");
+        if (testenumericoCidade == true) {
+            JOptionPane.showMessageDialog(
+                null,
+                "Sua cidade não pode conter números."
+            );
+            return;
+        }
         String email = JOptionPane.showInputDialog("Digite o email:");
         if (
             email.indexOf("@") == -1 ||
@@ -324,6 +388,7 @@ public class CrudMenuCsv {
                 null,
                 "CNPJ inválido. Digite no formato: 12.XXX.345/0000-99"
             );
+            return;
         }
 
         try (FileWriter writeruser = new FileWriter(filePathEmpresas, true)) {
