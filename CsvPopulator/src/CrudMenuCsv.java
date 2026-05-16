@@ -343,7 +343,7 @@ public class CrudMenuCsv {
             return;
         }
         String cidade = JOptionPane.showInputDialog("Digite a cidade:");
-        boolean testenumericoCidade = nome.matches("[0-9]+");
+        boolean testenumericoCidade = cidade.matches("[0-9]+");
         if (testenumericoCidade == true) {
             JOptionPane.showMessageDialog(
                 null,
