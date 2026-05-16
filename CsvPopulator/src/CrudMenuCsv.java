@@ -1,3 +1,10 @@
+// David Ferreira dos Santos
+// Nicolas Rafael
+// André Doria Santos
+// Felipe Chagas Santos
+// Marcus Vinicius
+// Anderson Carneiro
+//
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
